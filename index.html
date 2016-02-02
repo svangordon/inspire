@@ -49,8 +49,8 @@
 				<div ng-controller="quoteDisplayController">
 					<div ng-repeat="quote in quotes" class="row quote-row">
 						<p><span class="pulled-quotes pull-left">&ldquo;</span>{{quote.content}}<span class="pulled-quotes pull-right">&rdquo;</span></p>
-						<p> <span class="author-name">-- {{quote.author.fname}} {{quote.author.lname}} </span> <span class="author-desc">{{quote.author.desc}}</span></p>
-						<p>{{quote.context}}</p>
+						<p> <span class="author-name">-- {{quote.author.fname}} {{quote.author.lname}} </span> <span class="quote-author-desc">{{quote.author.desc}}</span></p>
+						<p class="text-muted quote-context">{{quote.context}}</p>
 					</div>
 					<div class="ratings-container"></div>
 				</div>

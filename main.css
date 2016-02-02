@@ -16,6 +16,14 @@ body {
   border-bottom: 1px #808080 dotted;
   text-align: center;
 }
+.quote-context {
+  font-size: 85%;
+  font-style: italic;
+}
+.quote-author-desc {
+  font-weight: bold;
+  font-size: 90%;
+}
 .pulled-quotes {
   color: #903;
   font-size: 75px;
