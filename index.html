@@ -48,11 +48,16 @@
 				<h3>Inspiration</h3>
 				<div ng-controller="quoteDisplayController">
 					<div ng-repeat="quote in quotes" class="row quote-row">
-						<p><span class="pulled-quotes pull-left">&ldquo;</span>{{quote.content}}<span class="pulled-quotes pull-right">&rdquo;</span></p>
-						<p> <span class="author-name">-- {{quote.author.fname}} {{quote.author.lname}} </span> <span class="quote-author-desc">{{quote.author.desc}}</span></p>
-						<p class="text-muted quote-context">{{quote.context}}</p>
+						<p><span class="pulled-quotes pull-left">&ldquo;</span>{{quote.quote.content}}<span class="pulled-quotes pull-right">&rdquo;</span></p>
+						<p> <span class="author-name">-- {{quote.author.fname}} {{quote.author.lname}} </span> <span class="quote-author-desc">{{quote.author.desc | uppercase}}</span></p>
+						<p class="text-muted quote-context">{{quote.quote.context}}</p>
+						<div class="ratings-container">
+							<div class="ratings-stars pull-right"  ng-repeat="star in quote.starsArray track by $index">
+								<span class="glyphicon glyphicon-star" ng-show="star" ng-class="{'ratings-stars-hover' : quote.status.hover[5-$index]}"></span>
+								<span class="glyphicon glyphicon-star-empty" ng-show="!star"></span>
+							</div>
+						</div>
 					</div>
-					<div class="ratings-container"></div>
 				</div>
 			</div>
 			<div id="add-quote" class="tab-pane">

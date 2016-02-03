@@ -22,7 +22,7 @@ body {
 }
 .quote-author-desc {
   font-weight: bold;
-  font-size: 90%;
+  font-size: 70%;
 }
 .pulled-quotes {
   color: #903;
@@ -38,4 +38,10 @@ body {
 }
 .author-desc {
   font-weight: light;
+}
+.ratings-stars {
+  display: inline-block;
+}
+.ratings-stars-hover {
+  color: #ff0;
 }
