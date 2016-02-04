@@ -26,8 +26,10 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<!-- My Angular / JS : -->
 	<script type="text/javascript" src="angular/appModule.js"></script>
+	<script type="text/javascript" src="angular/userFactory.js"></script>
 	<script type="text/javascript" src="angular/quote/quoteFactory.js"></script>
 	<script type="text/javascript" src="angular/quote/quoteDisplayController.js"></script>
+	<script type="text/javascript" src="angular/ratings/ratingsController.js"></script>
 </head>
 <body>
 	<div class="page-header">
@@ -51,10 +53,10 @@
 						<p><span class="pulled-quotes pull-left">&ldquo;</span>{{quote.quote.content}}<span class="pulled-quotes pull-right">&rdquo;</span></p>
 						<p> <span class="author-name">-- {{quote.author.fname}} {{quote.author.lname}} </span> <span class="quote-author-desc">{{quote.author.desc | uppercase}}</span></p>
 						<p class="text-muted quote-context">{{quote.quote.context}}</p>
-						<div class="ratings-container">
-							<div class="ratings-stars pull-right"  ng-repeat="star in quote.starsArray track by $index">
-								<span class="glyphicon glyphicon-star" ng-show="star" ng-class="{'ratings-stars-hover' : quote.status.hover[5-$index]}"></span>
-								<span class="glyphicon glyphicon-star-empty" ng-show="!star"></span>
+						<div class="ratings-container" ng-controller="ratingsController">
+							<div class="ratings-stars pull-right"  ng-repeat="star in quote.starsArray track by $index" ng-mouseleave="quote.status.hover = 0">
+								<span class="glyphicon glyphicon-star" ng-show="star" ng-class="{'ratings-stars-hover' : (quote.status.hover > 4-$index) || (starsDisplay(quote.metadata.id)[$index] && user.hasRated(quote.metadata.id))}" ng-click="starClick(quote.metadata.id, 4-$index); record(starsDisplay(quote.metadata.id))" ng-mouseenter="quote.status.hover = 5-$index"></span>
+								<span class="glyphicon glyphicon-star-empty" ng-show="!star" ng-class="{'ratings-stars-hover' : (quote.status.hover > 4-$index) || (starsDisplay(quote.metadata.id)[$index] && user.hasRated(quote.metadata.id))}" ng-click="starClick(quote.metadata.id, 4-$index)" ng-mouseenter="quote.status.hover = 5-$index"></span>
 							</div>
 						</div>
 					</div>

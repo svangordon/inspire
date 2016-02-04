@@ -23,7 +23,8 @@ angular.module('app')
 			};
 
 			this.status = {
-				hover : [false,false,false,false,false]
+				hover : 0,
+				rated : false
 			}
 		}
 
@@ -41,6 +42,9 @@ angular.module('app')
 			},
 			addRating : function(ratingIndex) { // Expects index of the star -- so like rating - 1
 				this.metadata.ratingsArray[ratingIndex]++;
+			},
+			removeRating : function (ratingIndex) {
+				this.metadata.ratingsArray[ratingIndex]--;
 			},
 			get starsArray() { // an index of whether to display each of the five stars
 				var out = [];
@@ -73,7 +77,7 @@ angular.module('app')
 					},
 					{
 						ratings : [10,20,30,40,50],
-						id : 'a100001'
+						id : 'q100001'
 					}
 				),
 
@@ -110,6 +114,17 @@ angular.module('app')
 						id : 'q100003'
 					}
 				)
-			]
+			],
+
+			indices : function() {
+				return this.quotes.map(cur => cur.metadata.id)
+			},
+
+			getRating : function(quoteID) {
+				return this.quotes[this.indices().indexOf(quoteID)].rating
+			},
+			getById : function(quoteID) {
+				return this.quotes[this.indices().indexOf(quoteID)]
+			}
 		}
 	}])
