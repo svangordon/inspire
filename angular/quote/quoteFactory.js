@@ -125,6 +125,10 @@ angular.module('app')
 			},
 			getById : function(quoteID) {
 				return this.quotes[this.indices().indexOf(quoteID)]
+			},
+			addQuote : function(author, quote, metadata) {
+				this.quotes.push(new Quote(author, quote, metadata));
+				console.log(this.quotes[this.quotes.length-1])
 			}
 		}
 	}])

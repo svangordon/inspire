@@ -27,9 +27,12 @@
 	<!-- My Angular / JS : -->
 	<script type="text/javascript" src="angular/appModule.js"></script>
 	<script type="text/javascript" src="angular/userFactory.js"></script>
+	<script type="text/javascript" src="angular/quoteGetFactory.js"></script>
 	<script type="text/javascript" src="angular/quote/quoteFactory.js"></script>
 	<script type="text/javascript" src="angular/quote/quoteDisplayController.js"></script>
 	<script type="text/javascript" src="angular/ratings/ratingsController.js"></script>
+	<script type="text/javascript" src="angular/randoQuote.js"></script>
+	<script type="text/javascript" src="angular/formController.js"></script>
 </head>
 <body>
 	<div class="page-header">
@@ -37,11 +40,13 @@
 		<h2>Because talking is more important than doing</h2>
 	</div>
 
+<button ng-controller="randoController" class="pull-right random-button" ng-click="randomQuote()">Random Quote</button>
+
 	<div class="container">
 		<div class="nav-buttons">
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#get-inspired" data-toggle="tab">Get Inspired</a></li>
-				<li><a href="#add-quote" data-toggle="tab">+ Quote</a></li>
+				<li><a href="#add-quote" data-toggle="tab">Submit a Quote</a></li>
 			</ul>
 			<br>
 		</div>
@@ -62,9 +67,25 @@
 					</div>
 				</div>
 			</div>
-			<div id="add-quote" class="tab-pane">
+			<div id="add-quote" class="tab-pane" ng-controller="formController">
 				<h3>Share your Inspiration</h3>
-				<p>A FORM WILL GO HERE</p>
+				<p>Share a quote with the world because everyone totally cares what you think and you're a beautifl unique special snowflake</p>
+				<form>
+					<div class="form-container">
+						<label for="form-author">Author</label>
+						<br>
+						<input type="text" class="form-author" placeholder="First Name" ng-model="form.author.fname" ng-class="{'invalid-form' : formStatus.fname === -1}"/>
+						<input type="text" class="form-author pull-right danger" placeholder="Last Name" ng-model="form.author.lname" ng-class="{'invalid-form' : formStatus.lname === -1}"/>
+						<label for="form-content">Find something inspiring and totally don't make up some bullshit</label>
+						<textarea class="form-control" rows="3" id="form-content" ng-model="form.quote.content" ng-class="{'invalid-form' : formStatus.content === -1}"></textarea>
+						<label for="form-author-desc" >About the Author</label>
+						<input type="text" class="form-control" id="form-author-desc" ng-model="form.author.desc" />
+						<label for="form-quote-context">Quote Context</label>
+						<input type="text" id="form-quote-context" class="form-control" ng-model="form.quote.context" />
+						<input type="button" value="Submit" ng-click="submitButton()"/>
+						<input type="button" value="Random Quote" ng-click="randomQuote()" />
+					</div>
+				</form>
 			</div>
 		</div>
 
